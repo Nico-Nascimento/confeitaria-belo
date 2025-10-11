@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import Head from "next/head";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,7 +15,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className={poppins.className}>{children}</body>
+      <Head>
+        <title>Cardápio da Belô</title>
+        <link rel="icon" type="image/png" href="logo.png" />
+      </Head>
+      <body>{children}</body>
     </html>
   );
 }
