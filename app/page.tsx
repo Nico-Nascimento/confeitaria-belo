@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion"; // ⬅️ Import Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Product {
   id: number;
@@ -202,23 +202,23 @@ const products = [
     serves: "Serve 1 pessoa (aprox. 200g).",
     price: 11.90,
     image: "/caseirinho-morango.jpg",
-  },
+  },*/
   {
     id: 25,
-    name: "Fatia de Brownie - Duo Kit Kat",
-    description: "Fatia de Brownie coberto com brigadeiro de chocolate e brigadeiro branco, fios de creme de avelã e Kit Kat.",
-    serves: "Serve 1 pessoa (aprox. 200g).",
-    price: 11.50,
+    name: "Fatia de Brownie - Kit Kat",
+    description: "Fatia de Brownie coberto com brigadeiro branco e Kit Kat.",
+    serves: "Serve 1 pessoa (aprox. 160g).",
+    price: 10.90,
     image: "/fatia-kitkat.jpg",
   },
   {
     id: 26,
-    name: "Fatia de Brownie - Morangos com Avelã",
-    description: "Fatia de Brownie coberto com brigadeiro branco, fios de creme de avelã e morangos frescos.",
-    serves: "Serve 1 pessoa (aprox. 200g).",
-    price: 11.50,
-    image: "/fatia-kitkat.jpg",
-  },*/
+    name: "Fatia de Brownie - Amendoim",
+    description: "Fatia de Brownie coberto com brigadeiro de chocolate e amendoim granulado.",
+    serves: "Serve 1 pessoa (aprox. 160g).",
+    price: 10.90,
+    image: "/fatia-brigadeiro-amendoim.jpg",
+  },
 ];
 
 
@@ -227,9 +227,9 @@ export default function Page() {
   const [cartOpen, setCartOpen] = useState(false);
   const [showFreteInput, setShowFreteInput] = useState(false);
   const [endereco, setEndereco] = useState("");
-  const [cartBounce, setCartBounce] = useState(false); // ⬅️ controla bounce do carrinho
+  const [cartBounce, setCartBounce] = useState(false); 
 
-  const whatsappNumber = "555192316351"; // Número da confeitaria
+  const whatsappNumber = "555192316351"; 
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -310,7 +310,6 @@ export default function Page() {
     window.open(url, "_blank");
   };
 
-  // Função para enviar só um "Olá"
   const sendHelloWhatsApp = () => {
     const message = "Olá Belô! Gostaria de fazer um pedido ou mais informações.";
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -332,7 +331,6 @@ export default function Page() {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // formatador BRL
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
 
@@ -343,8 +341,8 @@ export default function Page() {
     >
       <motion.div
         className="flex justify-center mb-6"
-        initial={{ opacity: 0, y: -20 }} // começa invisível e levemente acima
-        animate={{ opacity: 1, y: 0 }}   // aparece e desce suavemente
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Image
@@ -356,29 +354,27 @@ export default function Page() {
         />
       </motion.div>
 
-      {/* Título com animação */}
       <motion.h1
         className="text-2xl font-bold mb-4 text-white drop-shadow text-center"
-        initial={{ opacity: 0, y: 10 }} // começa invisível e levemente abaixo
-        animate={{ opacity: 1, y: 0 }}  // aparece e sobe suavemente
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }} // delay para dar efeito sequencial
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
         🍰 Cardápio da Belô 🍰
       </motion.h1>
 
-      {/* Lista de produtos */}
       <div className="flex flex-col gap-4 max-w-xl mx-auto">
         {products.map((product, index) => {
           const cartItem = cart.find((item) => item.id === product.id);
           return (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }} // começa invisível e levemente abaixo
-              animate={{ opacity: 1, y: 0 }} // aparece e sobe suavemente
-              transition={{ duration: 0.4, delay: index * 0.08 }} // delay progressivo para efeito em cascata
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               className="flex items-center gap-4 border p-4 rounded-lg shadow bg-white/80 relative hover:shadow-xl transition-shadow duration-300"
             >
-              {/* Imagem com contador animado */}
+
               <div className="relative">
                 <Image
                   src={product.image}
@@ -404,7 +400,6 @@ export default function Page() {
                 </AnimatePresence>
               </div>
 
-              {/* Infos do produto */}
               <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <h2 className="text-lg font-semibold ">{product.name}</h2>
@@ -412,7 +407,6 @@ export default function Page() {
                   <p className="text-sm text-gray-500 italic">{product.serves}</p>
                 </div>
 
-                {/* Preço + botão */}
                 <div className="flex justify-end items-center gap-12 mt-3">
                   <p className="font-bold text-[#613424]">
                     {formatCurrency(product.price)}
@@ -430,7 +424,6 @@ export default function Page() {
         })}
       </div>
 
-      {/* Botão do carrinho com bounce animado */}
       <motion.button
         onClick={() => setCartOpen(true)}
         animate={cartBounce ? { scale: [1, 1.2, 1] } : { scale: 1 }}
@@ -445,7 +438,6 @@ export default function Page() {
         )}
       </motion.button>
 
-      {/* Botão WhatsApp */}
       <motion.button onClick={sendHelloWhatsApp}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -457,7 +449,6 @@ export default function Page() {
       <AnimatePresence>
         {cartOpen && (
           <>
-            {/* Fundo escuro com fade */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
@@ -468,7 +459,6 @@ export default function Page() {
               onClick={() => setCartOpen(false)}
             />
 
-            {/* Drawer do carrinho com slide suave */}
             <motion.div
               key="cart"
               initial={{ x: "100%" }}
@@ -481,7 +471,6 @@ export default function Page() {
                 Carrinho ({totalItems} itens)
               </h2>
 
-              {/* Itens com fade suave ao esvaziar */}
               <motion.ul
                 layout
                 className="flex-1 overflow-y-auto space-y-3"
@@ -535,7 +524,6 @@ export default function Page() {
                   Esvaziar Carrinho
                 </button>
 
-                {/* Animação de fade+slide ao alternar entre Solicitar e Voltar */}
                 <AnimatePresence mode="wait">
                   {!showFreteInput ? (
                     <motion.button
