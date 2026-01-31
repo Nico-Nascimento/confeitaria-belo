@@ -29,23 +29,44 @@ export default function ProductList({
   addToCart,
   onImageClick,
 }: ProductListProps) {
-  return (
-    <div className="flex flex-col gap-4 max-w-xl mx-auto">
-      {products.map((product, index) => {
-        const cartItem = cart.find((item) => item.id === product.id);
+  
+  const productsByCategory = products.reduce((acc, product) => {
+    if (!acc[product.category]) {
+      acc[product.category] = [];
+    }
+    acc[product.category].push(product);
+    return acc;
+  }, {} as Record<string, Product[]>);
 
-        return (
-          <ProductCard
-            key={product.id}
-            product={product}
-            index={index}
-            cartItem={cartItem}
-            formatCurrency={formatCurrency}
-            addToCart={addToCart}
-            onImageClick={onImageClick} 
-          />
-        );
-      })}
+  return (
+    <div className="flex flex-col gap-8 max-w-xl mx-auto">
+      {Object.entries(productsByCategory).map(
+        ([category, items]) => (
+          <div key={category} className="flex flex-col gap-4">
+            <h2 className="text-lg font-bold text-white text-center py-2 rounded-lg bg-[#613424] shadow">
+              {category}
+            </h2>
+
+            {items.map((product, index) => {
+              const cartItem = cart.find(
+                (item) => item.id === product.id
+              );
+
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  index={index}
+                  cartItem={cartItem}
+                  formatCurrency={formatCurrency}
+                  addToCart={addToCart}
+                  onImageClick={onImageClick}
+                />
+              );
+            })}
+          </div>
+        )
+      )}
     </div>
   );
 }

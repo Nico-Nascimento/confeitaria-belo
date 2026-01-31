@@ -5,6 +5,7 @@ export interface Product {
   serves: string;
   price: number;
   image: string;
+  category: string;
 }
 
 export const products: Product[] = [
@@ -15,6 +16,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 150g).",
     price: 15.90,
     image: "/pizza-tentacao.jpeg",
+    category: "Brownies",
   },
   {
     id: 2,
@@ -23,6 +25,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 150g).",
     price: 15.90,
     image: "/pizza-amendoim.jpeg",
+    category: "Brownies",
   },
   {
     id: 3,
@@ -31,30 +34,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 150g).",
     price: 15.90,
     image: "/pizza-kinder.jpeg",
-  },
-  {
-    id: 4,
-    name: "Brownie Recheado de Ninho",
-    description: "Brownie que desmancha na boca, recheado com brigadeiro de Ninho.",
-    serves: "Serve 1 pessoa (aprox. 130g).",
-    price: 7.90,
-    image: "/brownie-ninho.jpg",
-  },
-  {
-    id: 5,
-    name: "Brownie Recheado de Doce de Leite",
-    description: "Brownie que desmancha na boca, recheado com doce de leite.",
-    serves: "Serve 1 pessoa (aprox. 130g).",
-    price: 7.90,
-    image: "/brownie-doceleite.jpg",
-  },
-  {
-    id: 6,
-    name: "Brownie Recheado de Brigadeiro",
-    description: "Brownie que desmancha na boca, recheado com brigadeiro de chocolate.",
-    serves: "Serve 1 pessoa (aprox. 130g).",
-    price: 7.90,
-    image: "/brownie-brigadeiro.jpg",
+    category: "Brownies",
   },
   {
     id: 7,
@@ -63,6 +43,34 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 130g).",
     price: 10.90,
     image: "/trio-brownie.jpeg",
+    category: "Brownies",
+  },
+  {
+    id: 11,
+    name: "Brownie no Pote - Bombom de Morango",
+    description: "Camadas de brigadeiro de chocolate e brigadeiro branco, morangos frescos e lasquinhas de Brownie.",
+    serves: "Serve 1 pessoa (aprox. 220g).",
+    price: 14.90,
+    image: "/brownie-pote-morango.jpeg",
+    category: "Brownies",
+  },
+  {
+    id: 12,
+    name: "Brownie no Pote - Duo Choco",
+    description: "Camadas de brigadeiro de chocolate, brigadeiro branco e lasquinhas de Brownie.",
+    serves: "Serve 1 pessoa (aprox. 220g).",
+    price: 12.90,
+    image: "/brownie-pote-choco.jpeg",
+    category: "Brownies",
+  },
+   {
+    id: 25,
+    name: "Brownie no Pote - Tipo Ferrero",
+    description: "Camadas de brigadeiro de chocolate, creme de avelã, amendoim e lasquinhas de Brownie.",
+    serves: "Serve 1 pessoa (aprox. 220g).",
+    price: 13.90,
+    image: "/brownie-pote-ferrero.jpeg",
+    category: "Brownies",
   },
   {
     id: 8,
@@ -71,6 +79,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 130g).",
     price: 8.90,
     image: "/coockie-recheado.jpeg",
+    category: "Cookies",
   },
   {
     id: 9,
@@ -79,6 +88,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 130g).",
     price: 13.90,
     image: "/cookie-turbinado.jpeg",
+    category: "Cookies",
   },
   {
     id: 10,
@@ -87,38 +97,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 50g).",
     price: 3.90,
     image: "/brigadeiro.jpeg",
-  },
-  /*{
-    id: 11,
-    name: "Brownie no Pote - Bombom de Morango",
-    description: "Camadas de mousse de Ninho e mousse de chocolate, brigadeiro de chocolate e brigadeiro branco, morangos frescos e lasquinhas de Brownie.",
-    serves: "Serve 1 pessoa (aprox. 220g).",
-    price: 11.50,
-    image: "/caseirinho-morango.jpg",
-  },
-  {
-    id: 12,
-    name: "Brownie no Pote - Duo Choco",
-    description: "Camadas de mousse de Ninho e mousse de chocolate, brigadeiro de chocolate e brigadeiro branco e lasquinhas de Brownie.",
-    serves: "Serve 1 pessoa (aprox. 220g).",
-    price: 11.50,
-    image: "/caseirinho-morango.jpg",
-  },*/
-  {
-    id: 13,
-    name: "Bolo no Pote - Choco-Ninho",
-    description: "Camadas de massa de chocolate, brigadeiro branco, Ninho e mousse de Ninho.",
-    serves: "Serve 1 pessoa (aprox. 220g).",
-    price: 13.90,
-    image: "/pote-choco-ninho.jpg",
-  },
-  {
-    id: 14,
-    name: "Bolo no Pote - Chocolatudo",
-    description: "Camadas de massa de chocolate, brigadeiro de chocolate e mousse de chocolate.",
-    serves: "Serve 1 pessoa (aprox. 220g).",
-    price: 13.90,
-    image: "/pote-chocolatudo.jpg",
+    category: "Cookies",
   },
   {
     id: 15,
@@ -127,6 +106,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 220g).",
     price: 11.90,
     image: "/gelado-abacaxi-coco.jpg",
+    category: "Bolos Gelado",
   },
   {
     id: 16,
@@ -135,6 +115,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 220g).",
     price: 10.50,
     image: "/gelado-prestigio.png",
+    category: "Bolos Gelado",
   },
   {
     id: 17,
@@ -143,6 +124,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 220g).",
     price: 11.90,
     image: "/gelado-ninho-morango.jpeg",
+    category: "Bolos Gelado",
   },
   {
     id: 18,
@@ -151,6 +133,7 @@ export const products: Product[] = [
     serves: "Serve 1 pessoa (aprox. 220g).",
     price: 10.90,
     image: "/gelado-duo-choco.jpg",
+    category: "Bolos Gelado",
   },
   {
     id: 19,
@@ -159,6 +142,7 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 21.90,
     image: "/caseirinho-morango.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
   {
     id: 20,
@@ -167,6 +151,7 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 21.90,
     image: "/caseirinho-sensacao.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
   {
     id: 21,
@@ -175,6 +160,7 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 18.90,
     image: "/caseirinho-brownie.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
   {
     id: 22,
@@ -183,6 +169,7 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 18.90,
     image: "/caseirinho-choco-ninho.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
   {
     id: 23,
@@ -191,6 +178,7 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 20.90,
     image: "/caseirinho-kitkat.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
   {
     id: 24,
@@ -199,5 +187,6 @@ export const products: Product[] = [
     serves: "Serve 1 a 2 pessoas (aprox. 400g).",
     price: 21.50,
     image: "/caseirinho-ninho-avela.jpg",
+    category: "Bolos Caseiro Vulcão",
   },
 ];

@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import ProductDescriptionModal from "./ProductDescriptionModal";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Tipos usados
+
 interface Product {
   id: number;
   name: string;
@@ -26,6 +28,7 @@ interface ProductCardProps {
   onImageClick: (img: string) => void;
 }
 
+
 export default function ProductCard({
   product,
   cartItem,
@@ -33,59 +36,83 @@ export default function ProductCard({
   formatCurrency,
   addToCart,
   onImageClick,
+  
 }: ProductCardProps) {
+  const [openDescription, setOpenDescription] = useState(false);
   return (
+    
     <motion.div
-      key={product.id}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="flex items-center gap-4 border p-4 rounded-lg shadow bg-white/80 relative hover:shadow-xl transition-shadow duration-300"
+      transition={{ duration: 0.35, delay: index * 0.05 }}
+      className="flex gap-4 bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition"
     >
-      <div className="relative">
+      {/* TEXTO */}
+      <div className="flex-1 flex flex-col justify-between">
+        <div>
+          <h2 className="text-base font-semibold leading-tight">
+            {product.name}
+          </h2>
+
+          <p
+            onClick={() => setOpenDescription(true)}
+            className="text-sm text-gray-600 mt-1 line-clamp-2 cursor-pointer hover:underline">
+            {product.description}
+          </p>
+
+          <p className="text-xs text-gray-500 italic mt-1">
+            {product.serves}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between mt-3">
+          <span className="font-bold text-[#613424] text-lg">
+            {formatCurrency(product.price)}
+          </span>
+
+          <button
+            onClick={() => addToCart(product)}
+            className="bg-[#613424] text-white text-sm px-4 py-1.5 rounded-full hover:bg-[#4e1f0e] transition"
+          >
+            Adicionar
+          </button>
+        </div>
+      </div>
+
+      {/* IMAGEM */}
+      <div className="relative shrink-0">
         <Image
           src={product.image}
           alt={product.name}
-          width={140}
-          height={140}
-          className="rounded-md object-cover cursor-pointer"
+          width={96}
+          height={96}
+          className="rounded-lg object-cover cursor-pointer"
           onClick={() => onImageClick(product.image)}
         />
+
+        <ProductDescriptionModal
+          open={openDescription}
+          onClose={() => setOpenDescription(false)}
+          name={product.name}
+          description={product.description}
+          serves={product.serves}
+        />
+
 
         <AnimatePresence>
           {cartItem && (
             <motion.span
               key={cartItem.quantity}
               initial={{ scale: 0 }}
-              animate={{ scale: 1.2 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              animate={{ scale: 1 }}
               exit={{ scale: 0 }}
-              className="absolute top-0 right-0 bg-[#613424] text-white text-xs font-bold px-2 py-1 rounded-full shadow-md"
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="absolute -top-2 -right-2 bg-[#613424] text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full shadow"
             >
               {cartItem.quantity}
             </motion.span>
           )}
         </AnimatePresence>
-      </div>
-
-      <div className="flex-1 flex flex-col justify-between">
-        <div>
-          <h2 className="text-lg font-semibold">{product.name}</h2>
-          <p className="text-sm text-gray-700">{product.description}</p>
-          <p className="text-sm text-gray-500 italic">{product.serves}</p>
-        </div>
-
-        <div className="flex justify-end items-center gap-12 mt-3">
-          <p className="font-bold text-[#613424]">
-            {formatCurrency(product.price)}
-          </p>
-          <button
-            onClick={() => addToCart(product)}
-            className="bg-[#613424] text-white px-3 py-1 rounded hover:bg-[#2e0e02] transition-all"
-          >
-            Adicionar
-          </button>
-        </div>
       </div>
     </motion.div>
   );

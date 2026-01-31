@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import ProductList from "@/components/ProductList";
 import CartFloatingButton from "@/components/CartFloatingButton";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import CartSidebar from "@/components/CartSidebar";
 import ImagePreviewModal from "@/components/ImagePreviewModal";
 import Footer from "@/components/Footer";
+import BackToTopButton from "@/components/BackToTopButton";
 
 export interface Product {
   id: number;
@@ -171,7 +171,6 @@ export default function Page() {
         openCart={() => setCartOpen(true)}
       />
 
-      <WhatsAppButton onClick={sendHelloWhatsApp} />
 
       <CartSidebar
         cartOpen={cartOpen}
